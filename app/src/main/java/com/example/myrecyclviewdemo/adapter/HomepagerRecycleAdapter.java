@@ -57,8 +57,6 @@ public class HomepagerRecycleAdapter extends RecyclerView.Adapter {
         headerData = new ArrayList<>();
         refreshbean = new ArrayList<>();
         centerBean = new ArrayList<>();
-
-
     }
 
     @Override
@@ -192,13 +190,19 @@ public class HomepagerRecycleAdapter extends RecyclerView.Adapter {
         CENTERPOSITION = mHomeCategories.size() == 0 ? 1 : 2;
         REFRESHPOSITION = centerBean.size() == 0 ? 3 : 4;
 
-        Log.e("getItemViewType", "getItemViewType: " + CENTERPOSITION + ",:" + REFRESHPOSITION);
+        Log.e("getItemViewType", position + "    getItemViewType: " + CENTERPOSITION + ",:" + REFRESHPOSITION);
 
-        if (position == 0) return TYPE_TOP;
-        else if (position == CENTERPOSITION || position == REFRESHPOSITION) return TYPE_HEADER;
-        else if (position == 1) return TYPE_CATEGORY;
-        else if (position == CENTERPOSITION + 1) return TYPE_CENTER;
-        else return TYPE_REFRESH;
+        if (position == 0) {
+            return TYPE_TOP;
+        } else if (position == CENTERPOSITION || position == REFRESHPOSITION) {
+            return TYPE_HEADER;
+        } else if (position == 1) {
+            return TYPE_CATEGORY;
+        } else if (position == CENTERPOSITION + 1) {
+            return TYPE_CENTER;
+        } else {
+            return TYPE_REFRESH;
+        }
     }
 
 

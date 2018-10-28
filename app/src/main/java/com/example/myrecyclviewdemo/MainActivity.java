@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements RefreshUtils.Refr
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
                         s = "{" + "\"data\":" + s + "}";
-
+                        Log.i("getHeaderData    ", s);
                         Headerbean headerbean = new Gson().fromJson(s, Headerbean.class);
 
                         if (headerbean != null) {
@@ -126,6 +126,8 @@ public class MainActivity extends AppCompatActivity implements RefreshUtils.Refr
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
                         s = "{" + "\"data\":" + s + "}";
+
+                        Log.i("getCenterBean    ", s);
                         RefreshBean refreshBean = new Gson().fromJson(s, RefreshBean.class);
                         if (refreshBean != null) {
                             if (refreshBean.getData().size() != 0) {
@@ -156,6 +158,9 @@ public class MainActivity extends AppCompatActivity implements RefreshUtils.Refr
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
                         s = "{" + "\"data\":" + s + "}";
+
+                        Log.i("getRefreshData    ", s);
+
                         RefreshBean refreshBean = new Gson().fromJson(s, RefreshBean.class);
                         if (refreshBean != null) {
                             if (refreshBean.getData().size() != 0) {
@@ -163,8 +168,9 @@ public class MainActivity extends AppCompatActivity implements RefreshUtils.Refr
                                 if (flagFirst) {
                                     refreshUtils.finishrefreshSleep();
                                     flagFirst = false;
-                                } else
+                                } else{
                                     refreshUtils.finishrefresh();
+                                }
                             }
                         }
 
@@ -200,25 +206,23 @@ public class MainActivity extends AppCompatActivity implements RefreshUtils.Refr
         initdata();//此处是为了模拟，直接用了这一个接口数据源
 
 
-
-
     }
 
     @Override
     public void loadrefreshdata() {
         //刷新控件上拉加载的回掉方法
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(500);
-                    getRefreshData();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(500);
+//                    getRefreshData();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
 
 
     }
